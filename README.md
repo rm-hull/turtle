@@ -10,6 +10,7 @@ Examples
 
 ### Clojure
 
+    ```clojure
     (ns example
       (:use [turtle.core :only [draw!]]
             [turtle.renderer.png :only [->img]]))
@@ -17,12 +18,17 @@ Examples
     (def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
 
     (draw! ->img [800 600] triangle)
-    
-Would return an AWT BufferedImage of size 800x600, with the square :
+    ```
 
-     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: rmask=ff0000 gmask=ff00 bmask=ff amask=0 IntegerInterleavedRaster: width = 800 height = 600 #Bands = 3 xOff = 0 yOff = 0 dataOffset[0] 0>
+Would return an AWT BufferedImage of size 800x600, with the triangle scaled 
+to the full extent:
 
-Which can then be rendered with javax.imageio.ImageIO into whatever graphics format.
+     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: 
+     rmask=ff0000 gmask=ff00 bmask=ff amask=0 
+     IntegerInterleavedRaster: width = 800 height = 600 #Bands = 3 
+     xOff = 0 yOff = 0 dataOffset[0] 0>
+
+This can then be rendered with javax.imageio.ImageIO into whatever graphics format.
 
 Pre-requisites
 --------------
