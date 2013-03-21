@@ -23,10 +23,8 @@ Examples
 Would return an AWT BufferedImage of size 800x600, with the triangle scaled 
 to the full extent:
 
-     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: 
-     rmask=ff0000 gmask=ff00 bmask=ff amask=0 
-     IntegerInterleavedRaster: width = 800 height = 600 #Bands = 3 
-     xOff = 0 yOff = 0 dataOffset[0] 0>
+     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: rmask=ff0000 gmask=ff00 bmask=ff amask=0 
+     IntegerInterleavedRaster: width = 800 height = 600 #Bands = 3 xOff = 0 yOff = 0 dataOffset[0] 0>
 
 This can then be rendered with javax.imageio.ImageIO into whatever graphics format.
 
