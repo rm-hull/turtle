@@ -5,6 +5,25 @@ A lightweight turtle graphics library for Clojure &amp; ClojureScript.
 Includes renderer for PNG images for Clojure, and a HTML5 canvas renderer
 for ClojureScript.
 
+Examples
+--------
+
+### Clojure
+
+    (ns example
+      (:use [turtle.core :only [draw!]]
+            [turtle.renderer.png :only [->img]]))
+
+    (def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
+
+    (draw! ->img [800 600] triangle)
+    
+Would return an AWT BufferedImage of size 800x600, with the square :
+
+     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: rmask=ff0000 gmask=ff00 bmask=ff amask=0 IntegerInterleavedRaster: width = 800 height = 600 #Bands = 3 xOff = 0 yOff = 0 dataOffset[0] 0>
+
+Which can then be rendered with javax.imageio.ImageIO into whatever graphics format.
+
 Pre-requisites
 --------------
 You will need [Leiningen][1] 2.0.0 or above installed.
@@ -32,14 +51,19 @@ For maven-based projects, add the following to your `pom.xml`:
 
 TODO
 ----
-* Implement commands: 
-    - :origin - return to (0,0)
-    - :pen :up/:down - move to vs. line to processing
-    - :width _n_ - set the stroke width
 
 * Documentation
 
 * Examples
+
+* Tidy up canvas renderer
+
+* Rename png renderer - it isn't really that at all...
+
+* Implement commands: 
+    - :origin - return to (0,0)
+    - :pen :up/:down - move to vs. line to processing
+    - :width _n_ - set the stroke width
 
 [1]: https://github.com/technomancy/leiningen
 [2]: https://clojars.org/rm-hull/turtle
