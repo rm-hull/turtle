@@ -10,15 +10,15 @@ Examples
 
 ### Clojure
 
-    ```clojure
-    (ns example
-      (:use [turtle.core :only [draw!]]
-            [turtle.renderer.png :only [->img]]))
+```clojure
+(ns example
+  (:use [turtle.core :only [draw!]]
+        [turtle.renderer.png :only [->img]]))
 
-    (def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
+(def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
 
-    (draw! ->img [800 600] triangle)
-    ```
+(draw! ->img [800 600] triangle)
+```
 
 Would return an AWT BufferedImage of size 800x600, with the triangle scaled 
 to the full extent:
@@ -45,16 +45,20 @@ Including in your project
 -------------------------
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
-    [rm-hull/turtle "0.1.0-SNAPSHOT"]
-
+```clojure
+[rm-hull/turtle "0.1.0-SNAPSHOT"]
+```
+    
 For maven-based projects, add the following to your `pom.xml`:
 
-    <dependency>
-      <groupId>rm-hull</groupId>
-      <artifactId>turtle</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
-    </dependency>
-
+```xml
+<dependency>
+  <groupId>rm-hull</groupId>
+  <artifactId>turtle</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+</dependency>
+```
+    
 TODO
 ----
 
