@@ -78,7 +78,7 @@
       curr-state)))
 
 (defn- process [cmds]
-  (let [init-state { :coords [0 0] :heading 0 :stack []}]
+  (let [init-state { :coords [0 0] :heading 90 :stack []}]
     (->>
       (flatten cmds)
       (partition-all 2 1)
