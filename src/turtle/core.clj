@@ -81,6 +81,8 @@
   (let [init-state { :coords [0 0] :heading 0 :stack []}]
     (->>
       (flatten cmds)
+      ; TODO - replace with loop/recur
+      ; [in order to implement a more efficient lookahead]
       (partition-all 2 1)
       (reductions next-state init-state))))
 
