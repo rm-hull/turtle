@@ -69,6 +69,8 @@ TODO
     - Implement :move handler [PNG renderer]
     - Use no affine transform, if no bounding-box provided 
 
+* Fix inefficient partitioning - causes double states
+
 * Rename png renderer - it isn't really that at all...
 
 * Implement commands: 
