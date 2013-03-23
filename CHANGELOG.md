@@ -3,6 +3,7 @@ Changelog
 0.2.0
 -----
 * Bug: distinct cause problems with restore-points
+* No scaling if no target screen dimensions supplied
 
 0.1.0
 -----

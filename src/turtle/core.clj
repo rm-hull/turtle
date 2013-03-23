@@ -19,6 +19,9 @@
         [min-y max-y] (apply (juxt min max) (map second coords))]
    [[min-x min-y] [max-x max-y]]))
 
+(defn- adjust-to-zero [[[min-x min-y] [max-x max-y]]]
+  [[0 0] [( - max-x min-x) (- max-y min-y)]])
+
 (def radians (/ Math/PI 180.0))
 
 (defn- deg->rad [theta]
@@ -106,8 +109,9 @@
         scale   (min scale-x scale-y)]
     [ scale 0 0 (- scale) (* scale ( - min-x)) (* scale max-y) ])) 
 
-(defn draw! [renderer screen-area cmds]
+(defn draw! [renderer cmds & [screen-area]]
   (let [data   (process (concat [:color :red] cmds))
         bounds (bounding-box (map :coords data))
-        matrix (calc-matrix-transform screen-area bounds)]
-    (renderer data screen-area bounds matrix)))
+        output (if (nil? screen-area) (adjust-to-zero bounds) screen-area) 
+        matrix (calc-matrix-transform output bounds)]
+    (renderer data output bounds matrix)))

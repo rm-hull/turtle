@@ -63,11 +63,9 @@ TODO
 
 * Examples
 
-* Tidy up renderers
-    - Implement :move handler [PNG renderer]
-    - Use no affine transform, if no bounding-box provided 
-
 * Rename png renderer - it isn't really that at all...
+
+* Investigate poor rendering quality on PNG renderer
 
 * Implement commands: 
     - :width _n_ - set the stroke width
