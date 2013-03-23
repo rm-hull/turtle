@@ -57,7 +57,7 @@
       (update-in [:stack] pop))))
 
 (defn- goto-origin [state _]
-  (merge state { :coords [0 0] :heading 90 :stack [] :restore-point true}))
+  (merge state { :coords [0 0] :heading 90 :stack [] :restore-point true }))
 
 (defn- pen-ops [state pen]
   (if (= pen :up)
@@ -91,10 +91,10 @@
   (let [init-state { :coords [0 0] :heading 90 :stack []}]
     (->>
       (flatten cmds)
-      ; TODO - replace with loop/recur
-      ; [in order to implement a more efficient lookahead]
       (partition-all 2 1)
-      (reductions next-state init-state))))
+      (filter #(state-mapper (first %)))
+      (reductions next-state init-state)
+      distinct)))
 
 (defn- calc-matrix-transform 
   "Calculates an affine transform matrix which will scale a drawing 

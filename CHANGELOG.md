@@ -7,3 +7,4 @@ Changelog
 * Added operations :origin, :pen up/down
 * Bug: Initial orientation should be due north
 * Implemented color handling on canvas renderer
+* Performance improvements
