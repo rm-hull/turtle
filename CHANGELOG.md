@@ -6,3 +6,4 @@ Changelog
 * Extracted turtle functionality out of https://github.com/rm-hull/lindenmayer-systems
 * Added operations :origin, :pen up/down
 * Bug: Initial orientation should be due north
+* Implemented color handling on canvas renderer

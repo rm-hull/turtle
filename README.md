@@ -65,7 +65,6 @@ TODO
 * Examples
 
 * Tidy up renderers
-    - Colors don't render properly on a single stroke [Canvas renderer]
     - Implement :move handler [PNG renderer]
     - Use no affine transform, if no bounding-box provided 
 

@@ -8,12 +8,24 @@
     line-to))
 
 (defn- draw-path-segments! [ctx data]
-  (doseq [state data]
-    (.log js/console (pr-str "state" state))
-    (when-let [color (:color state)]
-      (stroke-style ctx color))
-    (apply (draw-op state) ctx (:coords state)))
-  ctx) ; return the context for threading
+  (begin-path ctx)
+  (loop [data data
+         x1 0.0
+         y1 0.0]
+    (if (nil? data)
+      (-> ctx stroke close-path) ; return the context for threading
+      (let [state (first data)
+            [x2 y2] (:coords state)]
+        (.log js/console (pr-str "state" state))
+        (when-let [color (:color state)]
+          (-> ctx 
+            stroke 
+            close-path 
+            (stroke-style color) 
+            begin-path 
+            (move-to x1 y1))) 
+        (apply (draw-op state) ctx (:coords state))
+        (recur (next data) x2 y2)))))
 
 (defn ->canvas [ctx]
   (fn [data [w h] bounds matrix]
