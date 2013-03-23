@@ -32,7 +32,7 @@
             (.reset path)
             (.setColor g2d (get color-mapper color))
             (.moveTo path x1 y1)) 
-          (if (:restore-point d) (.moveTo path x2 y2) (.lineTo path x2 y2) )
+          (if (or (:restore-point d) (:move d)) (.moveTo path x2 y2) (.lineTo path x2 y2) )
           (recur (next data) x2 y2))))))
 
 (defn ->img [data [w h] bounds matrix]

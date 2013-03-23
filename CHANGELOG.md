@@ -1,5 +1,8 @@
 Changelog
 =========
+0.2.0
+-----
+* Bug: distinct cause problems with restore-points
 
 0.1.0
 -----

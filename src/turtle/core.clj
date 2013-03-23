@@ -81,10 +81,10 @@
    and turn in to the heading relative to the command."
   ([] [])
   ([curr-state] curr-state)
-  ([curr-state [cmd & peek-ahead]]
+  ([curr-state [cmd & [peek-ahead]]]
     (if-let [update-fn (get state-mapper cmd)]
       ; always need stack/heading/coords, but nothing else
-      (update-fn (select-keys curr-state [:coords :heading :stack :move]) (first peek-ahead))
+      (update-fn (select-keys curr-state [:coords :heading :stack :move]) peek-ahead)
       curr-state)))
 
 (defn- process [cmds]
@@ -93,8 +93,7 @@
       (flatten cmds)
       (partition-all 2 1)
       (filter #(state-mapper (first %)))
-      (reductions next-state init-state)
-      distinct)))
+      (reductions next-state init-state))))
 
 (defn- calc-matrix-transform 
   "Calculates an affine transform matrix which will scale a drawing 
