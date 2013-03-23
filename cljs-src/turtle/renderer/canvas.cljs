@@ -16,7 +16,7 @@
       (-> ctx stroke close-path) ; return the context for threading
       (let [state (first data)
             [x2 y2] (:coords state)]
-        (.log js/console (pr-str "state" state))
+        ;(.log js/console (pr-str "state" state))
         (when-let [color (:color state)]
           (-> ctx 
             stroke 
@@ -36,7 +36,4 @@
       (apply transform ctx matrix)
       (stroke-width 3)
       (stroke-cap :square)
-      (begin-path)
-      (draw-path-segments! data)
-      (stroke)
-      (close-path))))
+      (draw-path-segments! data))))
