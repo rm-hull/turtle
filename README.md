@@ -64,13 +64,14 @@ TODO
 
 * Examples
 
-* Tidy up canvas renderer
+* Tidy up renderers
+    - Colors don't render properly on a single stroke [Canvas renderer]
+    - Implement :move handler [PNG renderer]
+    - Use no affine transform, if no bounding-box provided 
 
 * Rename png renderer - it isn't really that at all...
 
 * Implement commands: 
-    - :origin - return to (0,0)
-    - :pen :up/:down - move to vs. line to processing
     - :width _n_ - set the stroke width
 
 [1]: https://github.com/technomancy/leiningen

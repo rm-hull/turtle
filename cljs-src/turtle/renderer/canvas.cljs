@@ -2,11 +2,17 @@
   (:use [monet.canvas :only [save restore stroke-width stroke-cap stroke-style 
                              begin-path line-to move-to stroke close-path transform]]))
 
+(defn- draw-op [state]
+  (if (or (:restore-point state) (:move state)) 
+    move-to 
+    line-to))
+
 (defn- draw-path-segments! [ctx data]
-  (doseq [d data]
-    (when-let [color (:color d)]
+  (doseq [state data]
+    (.log js/console (pr-str "state" state))
+    (when-let [color (:color state)]
       (stroke-style ctx color))
-    (apply (if (:restore-point d) move-to line-to) ctx (:coords d)))
+    (apply (draw-op state) ctx (:coords state)))
   ctx) ; return the context for threading
 
 (defn ->canvas [ctx]

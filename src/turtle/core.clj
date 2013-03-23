@@ -56,14 +56,24 @@
       (merge restored {:restore-point true})
       (update-in [:stack] pop))))
 
+(defn- goto-origin [state _]
+  (merge state { :coords [0 0] :heading 90 :stack [] :restore-point true}))
+
+(defn- pen-ops [state pen]
+  (if (= pen :up)
+    (assoc state :move true) ; :move is sticky, :restore-point is not
+    (dissoc state :move)))
+
 (def state-mapper
   { :color   update-color 
     :color-index color-index 
     :left    (partial turn -)
     :right   (partial turn +)
     :fwd     move-forward 
+    :pen     pen-ops
     :save    push-state
-    :restore pop-state })
+    :restore pop-state 
+    :origin  goto-origin}) 
 
 (defn- next-state 
   "Evolves the current state and a given command to determine the next state,
@@ -74,7 +84,7 @@
   ([curr-state [cmd & peek-ahead]]
     (if-let [update-fn (get state-mapper cmd)]
       ; always need stack/heading/coords, but nothing else
-      (update-fn (select-keys curr-state [:coords :heading :stack]) (first peek-ahead))
+      (update-fn (select-keys curr-state [:coords :heading :stack :move]) (first peek-ahead))
       curr-state)))
 
 (defn- process [cmds]
