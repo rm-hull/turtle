@@ -13,6 +13,6 @@
   :source-path "src"
   :cljsbuild {
     :builds [{:source-paths ["cljs-src"], :id "main", :jar true}]}
-  :min-lein-version "2.1.0"
+  :min-lein-version "2.1.1"
   :description "A lightweight turtle drawing library for HTML5 canvas" 
 ) 
