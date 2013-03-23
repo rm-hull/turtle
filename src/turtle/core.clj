@@ -67,8 +67,8 @@
 (def state-mapper
   { :color   update-color 
     :color-index color-index 
-    :left    (partial turn -)
-    :right   (partial turn +)
+    :left    (partial turn +)
+    :right   (partial turn -)
     :fwd     move-forward 
     :pen     pen-ops
     :save    push-state
@@ -105,7 +105,7 @@
   (let [scale-x (/ screen-x (- max-x min-x))
         scale-y (/ screen-y (- max-y min-y))
         scale   (min scale-x scale-y)]
-    [ scale 0 0 (- scale) (- min-x) (* scale max-y) ])) 
+    [ scale 0 0 (- scale) (* scale ( - min-x)) (* scale max-y) ])) 
 
 (defn draw! [renderer screen-area cmds]
   (let [data   (process (concat [:color :red] cmds))

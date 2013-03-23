@@ -8,3 +8,4 @@ Changelog
 * Bug: Initial orientation should be due north
 * Implemented color handling on canvas renderer
 * Performance improvements
+* Bug: matrix calculation and turning malfunction
