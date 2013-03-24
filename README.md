@@ -63,6 +63,8 @@ TODO
 
 * Examples
 
+* Add margin to bounds so scaled drawings are not clipped
+
 * Rename png renderer - it isn't really that at all...
 
 * Investigate poor rendering quality on PNG renderer
