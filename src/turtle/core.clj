@@ -1,15 +1,5 @@
 (ns turtle.core)
 
-;; Basic Turtle implementation
-;; ---------------------------
-;; Allows a seq of keywords to 'drive' a turtle on an HTML5 canvas:
-;;
-;;   (def commands '(:color :red, :fwd 50, :left 10, :fwd 45, :right 72)
-;;   (draw! ctx commands [100 100])
-;;
-;; By default, the drawing is scaled to fill the screen dimensions
-;; (in this case [100,100])
-
 (def colors [:red :green :blue :yellow :cyan :magenta :orange :black "#663300" "#68FF33"])
 
 (defn- bounding-box 
