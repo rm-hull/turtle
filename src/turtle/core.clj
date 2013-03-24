@@ -112,6 +112,6 @@
 (defn draw! [renderer cmds & [screen-area]]
   (let [data   (process (concat [:color :red] cmds))
         bounds (bounding-box (map :coords data))
-        output (if (nil? screen-area) (adjust-to-zero bounds) screen-area) 
+        output (if (nil? screen-area) (second (adjust-to-zero bounds)) screen-area) 
         matrix (calc-matrix-transform output bounds)]
     (renderer data output bounds matrix)))
