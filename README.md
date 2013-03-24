@@ -17,7 +17,7 @@ Examples
 
 (def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
 
-(draw! ->img [800 600] triangle)
+(draw! ->img triangle [800 600])
 ```
 
 Would return an AWT BufferedImage of size 800x600, with the triangle scaled 
