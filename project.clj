@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-1586"]
                  [jayq "2.3.0"]
-                 [rm-hull/monet "0.1.6"]]
+                 [rm-hull/monet "0.1.7"]]
   :plugins [[lein-cljsbuild "0.3.0"]
             [com.birdseye-sw/lein-dalap "0.1.0"]]
   :hooks [leiningen.dalap leiningen.cljsbuild]
