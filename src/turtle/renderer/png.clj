@@ -2,7 +2,7 @@
   (:use [turtle.core :only [colors]])
   (:import [java.awt.image BufferedImage]
            [java.awt.geom AffineTransform GeneralPath]  
-           [java.awt Color Graphics2D RenderingHints BasicStroke]))
+           [java.awt Color Graphics2D RenderingHints BasicStroke GraphicsEnvironment]))
 
 (def color-mapper 
    { :red      Color/RED 
@@ -35,16 +35,25 @@
           (if (or (:restore-point d) (:move d)) (.moveTo path x2 y2) (.lineTo path x2 y2) )
           (recur (next data) x2 y2))))))
 
+(defn create-image [w h]
+  (if (GraphicsEnvironment/isHeadless)
+    (BufferedImage. w h BufferedImage/TYPE_INT_RGB)
+    (.createCompatibleImage 
+       (.getDefaultConfiguration 
+         (.getDefaultScreenDevice 
+           (GraphicsEnvironment/getLocalGraphicsEnvironment)))
+       w h)))
+
 (defn ->img [data [w h] bounds matrix]
-  (let [img (BufferedImage. w h BufferedImage/TYPE_INT_RGB)
+  (let [img (create-image w h) 
         g2d (.createGraphics img)]
     (doto g2d
       (.setBackground Color/WHITE)
       (.clearRect 0 0 w h)
+      (.setStroke (BasicStroke. 3)) 
+      (.setTransform (AffineTransform. (into-array Double/TYPE matrix))) 
       (.setRenderingHint RenderingHints/KEY_ANTIALIASING RenderingHints/VALUE_ANTIALIAS_ON)
-      (.setRenderingHint RenderingHints/KEY_INTERPOLATION RenderingHints/VALUE_INTERPOLATION_BICUBIC)
-      (.setRenderingHint RenderingHints/KEY_RENDERING RenderingHints/VALUE_RENDER_QUALITY)
-      (.setStroke (BasicStroke. 3))
-      (.setTransform (AffineTransform. (into-array Double/TYPE matrix)))) 
+      (.setRenderingHint RenderingHints/KEY_RENDERING RenderingHints/VALUE_RENDER_QUALITY))
     (draw-shape g2d data) 
+    (.dispose g2d)
     img))

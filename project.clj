@@ -1,4 +1,4 @@
-(defproject rm-hull/turtle "0.1.2"
+(defproject rm-hull/turtle "0.1.3"
   :description "A ClojureScript turtle-graphics library"
   :url "https://github.com/rm_hull/turtle"
   :license {:name "Eclipse Public License"

@@ -9,20 +9,23 @@
         [min-y max-y] (apply (juxt min max) (map second coords))]
    [[min-x min-y] [max-x max-y]]))
 
+(defn- extend-margin [[[min-x min-y] [max-x max-y]] margin]
+  [[(- min-x margin) (- min-y margin)] [(+ max-x margin) (+ max-y margin)]])
+
 (defn- adjust-to-zero [[[min-x min-y] [max-x max-y]]]
   [[0 0] [( - max-x min-x) (- max-y min-y)]])
 
 (def radians (/ Math/PI 180.0))
 
-(defn- deg->rad [theta]
+(defn- deg->rad [^double theta]
   (* theta radians))
 
 (defn- move-forward 
   "Given a state (containing a heading), move forward by the supplied
    distance."
-  [state dist]
+  [state ^double dist]
   (let [rad   (deg->rad (:heading state))
-        [x y] (:coords state)]
+        [^double x ^double y] (:coords state)]
     (assoc state :coords [ (+ x (* dist (Math/cos rad))) 
                            (+ y (* dist (Math/sin rad)))])))
 
@@ -81,7 +84,7 @@
       curr-state)))
 
 (defn- process [cmds]
-  (let [init-state { :coords [0 0] :heading 90 :stack []}]
+  (let [init-state { :coords [0.0 0.0] :heading 90 :stack []}]
     (->>
       (flatten cmds)
       (partition-all 2 1)
@@ -97,11 +100,11 @@
   (let [scale-x (/ screen-x (- max-x min-x))
         scale-y (/ screen-y (- max-y min-y))
         scale   (min scale-x scale-y)]
-    [ scale 0 0 (- scale) (* scale ( - min-x)) (* scale max-y) ])) 
+    [ scale 0.0 0.0 (- scale) (* scale ( - min-x)) (* scale max-y) ])) 
 
 (defn draw! [renderer cmds & [screen-area]]
   (let [data   (process (concat [:color :red] cmds))
-        bounds (bounding-box (map :coords data))
+        bounds (-> (map :coords data) bounding-box (extend-margin 5))
         output (if (nil? screen-area) (second (adjust-to-zero bounds)) screen-area) 
         matrix (calc-matrix-transform output bounds)]
     (renderer data output bounds matrix)))

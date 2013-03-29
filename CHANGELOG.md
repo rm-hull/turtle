@@ -1,11 +1,16 @@
 Changelog
 =========
-0.2.0
+0.1.3
+-----
+* Added margin
+* Added type-hints
+
+0.1.2
 -----
 * Bug: distinct cause problems with restore-points
 * No scaling if no target screen dimensions supplied
 
-0.1.0
+0.1.1
 -----
 * Extracted turtle functionality out of https://github.com/rm-hull/lindenmayer-systems
 * Added operations :origin, :pen up/down

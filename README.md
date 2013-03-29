@@ -30,7 +30,7 @@ This can then be rendered with javax.imageio.ImageIO into whatever graphics form
 
 Pre-requisites
 --------------
-You will need [Leiningen][1] 2.0.0 or above installed.
+You will need [Leiningen][1] 2.1.1 or above installed.
 
 Building
 --------
@@ -43,7 +43,7 @@ Including in your project
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
 ```clojure
-[rm-hull/turtle "0.1.2"]
+[rm-hull/turtle "0.1.3"]
 ```
     
 For maven-based projects, add the following to your `pom.xml`:
@@ -52,7 +52,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>turtle</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
 </dependency>
 ```
     
@@ -62,8 +62,6 @@ TODO
 * Documentation
 
 * Examples
-
-* Add margin to bounds so scaled drawings are not clipped
 
 * Rename png renderer - it isn't really that at all...
 
