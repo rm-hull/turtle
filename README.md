@@ -63,7 +63,9 @@ TODO
 
 * Examples
 
-* Rename png renderer - it isn't really that at all...
+* Implement SVG renderer
+
+* Rename png renderer - it isn't really that at...
 
 * Investigate poor rendering quality on PNG renderer
 
