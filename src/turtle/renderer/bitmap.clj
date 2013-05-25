@@ -1,4 +1,4 @@
-(ns turtle.renderer.png
+(ns turtle.renderer.bitmap
   (:use [turtle.core :only [colors]])
   (:import [java.awt.image BufferedImage]
            [java.awt.geom AffineTransform GeneralPath]  
