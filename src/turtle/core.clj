@@ -84,7 +84,7 @@
       curr-state)))
 
 (defn- process [cmds]
-  (let [init-state { :coords [0.0 0.0] :heading 90 :stack []}]
+  (let [init-state { :color :red :coords [0.0 0.0] :heading 90 :stack []}]
     (->>
       (flatten cmds)
       (partition-all 2 1)
@@ -103,8 +103,11 @@
     [ scale 0.0 0.0 (- scale) (* scale ( - min-x)) (* scale max-y) ])) 
 
 (defn draw! [renderer cmds & [screen-area]]
-  (let [data   (process (concat [:color :red] cmds))
+  (let [data   (process cmds)
         bounds (-> (map :coords data) bounding-box (extend-margin 5))
         output (if (nil? screen-area) (second (adjust-to-zero bounds)) screen-area) 
         matrix (calc-matrix-transform output bounds)]
     (renderer data output bounds matrix)))
+
+(defn move-op? [command]
+  (or (:restore-point command) (:move command)))

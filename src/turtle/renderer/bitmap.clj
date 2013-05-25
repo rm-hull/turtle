@@ -1,5 +1,5 @@
 (ns turtle.renderer.bitmap
-  (:use [turtle.core :only [colors]])
+  (:use [turtle.core :only [move-op?]])
   (:import [java.awt.image BufferedImage]
            [java.awt.geom AffineTransform GeneralPath]  
            [java.awt Color Graphics2D RenderingHints BasicStroke GraphicsEnvironment]))
@@ -32,7 +32,7 @@
             (.reset path)
             (.setColor g2d (get color-mapper color))
             (.moveTo path x1 y1)) 
-          (if (or (:restore-point d) (:move d)) (.moveTo path x2 y2) (.lineTo path x2 y2) )
+          (if (move-op? d) (.moveTo path x2 y2) (.lineTo path x2 y2) )
           (recur (next data) x2 y2))))))
 
 (defn create-image [w h]

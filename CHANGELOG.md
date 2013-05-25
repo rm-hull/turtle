@@ -1,5 +1,10 @@
 Changelog
 =========
+0.1.4
+-----
+* SVG rendering
+* Renamed PNG renderer to bitmap
+
 0.1.3
 -----
 * Added margin
