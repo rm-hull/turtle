@@ -7,3 +7,4 @@ pom.xml*
 .lein-repl-history
 
 cljs-src/turtle/core.cljs
+/cljs-src/turtle/renderer/vector.cljs
