@@ -89,6 +89,7 @@ TODO
 
 * Implement commands: 
     - :width _n_ - set the stroke width
+    - :fill - close the current path and fill with the selected color
 
 [1]: https://github.com/technomancy/leiningen
 [2]: https://clojars.org/rm-hull/turtle
