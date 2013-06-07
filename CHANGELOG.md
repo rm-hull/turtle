@@ -1,8 +1,12 @@
 Changelog
 =========
+0.1.5
+-----
+* SVG rendering (clojurescript)
+
 0.1.4
 -----
-* SVG rendering
+* SVG rendering (clojure only)
 * Renamed PNG renderer to bitmap
 
 0.1.3

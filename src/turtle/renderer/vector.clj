@@ -1,7 +1,14 @@
+^{:cljs
+  (ns turtle.renderer.vector
+    (:use [clojure.string :only [join]]
+          [turtle.core :only [move-op?]]
+          [dommy.template :only [->node-like]])
+    (:use-macros [dommy.macros :only [node]]))
+}
 (ns turtle.renderer.vector
   (:use [clojure.string :only [join]]
         [turtle.core :only [move-op?]] 
-        [hiccup.core]))
+        [hiccup.core :only [html]]))
 
 (defn- transform [[a b c d e f]]
   (str "translate(" e "," f ") scale(" a "," d ")"))
@@ -24,7 +31,7 @@
     (partition-all 2)))
 
 (defn ->svg [data [w h] bounds matrix]
-  (html 
+  (^{:cljs node} html 
     [:svg 
      { :xmlns "http://www.w3.org/2000/svg"
        :xmlns:xlink "http://www.w3.org/1999/xlink"
