@@ -27,6 +27,13 @@
         (let [d (first data)
               x2 (double (get-in d [:coords 0])) 
               y2 (double (get-in d [:coords 1]))]
+          (when-let [color (:fill d)]
+            (.closePath path)
+            (.setBackgroundColor g2d (get color-mapper color))
+            (.fill g2d path)
+            (.draw g2d path)
+            (.reset path)
+            (.moveTo path x1 y1))
           (when-let [color (:color d)]
             (.draw g2d path)
             (.reset path)

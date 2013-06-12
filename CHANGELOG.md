@@ -1,5 +1,9 @@
 Changelog
 =========
+0.1.6
+-----
+* Fill operation (canvas/bitmap only, not SVG yet)
+
 0.1.5
 -----
 * SVG rendering (clojurescript)

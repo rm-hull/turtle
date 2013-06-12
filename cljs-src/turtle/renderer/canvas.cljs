@@ -1,5 +1,5 @@
 (ns turtle.renderer.canvas
-  (:use [monet.canvas :only [save restore stroke-width stroke-cap stroke-style 
+  (:use [monet.canvas :only [save restore stroke-width stroke-cap stroke-style fill fill-style
                              begin-path line-to move-to stroke close-path transform]]))
 
 (defn- draw-op [state]
@@ -16,7 +16,14 @@
       (-> ctx stroke close-path) ; return the context for threading
       (let [state (first data)
             [x2 y2] (:coords state)]
-        ;(.log js/console (pr-str "state" state))
+        (when-let [color (:fill state)]
+          (-> ctx 
+            close-path 
+            (fill-style color) 
+            fill
+            stroke 
+            begin-path 
+            (move-to x1 y1))) 
         (when-let [color (:color state)]
           (-> ctx 
             stroke 

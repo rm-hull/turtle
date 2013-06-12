@@ -39,6 +39,9 @@
 (defn- update-color [state color]
   (assoc state :color color))
 
+(defn- update-fill [state color]
+  (assoc state :fill color))
+
 (defn- color-index [state index]
   (update-color state (get colors index)))
 
@@ -62,6 +65,7 @@
 
 (def state-mapper
   { :color   update-color 
+    :fill    update-fill 
     :color-index color-index 
     :left    (partial turn +)
     :right   (partial turn -)
