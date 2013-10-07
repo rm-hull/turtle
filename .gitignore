@@ -8,3 +8,5 @@ pom.xml*
 
 cljs-src/turtle/core.cljs
 /cljs-src/turtle/renderer/vector.cljs
+/.lein-failures
+/.nrepl-port

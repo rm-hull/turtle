@@ -52,7 +52,7 @@ yields:
 
 Pre-requisites
 --------------
-You will need [Leiningen][1] 2.1.1 or above installed.
+You will need [Leiningen][1] 2.3.2 or above installed.
 
 Building
 --------
@@ -65,7 +65,7 @@ Including in your project
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
 ```clojure
-[rm-hull/turtle "0.1.6"]
+[rm-hull/turtle "0.1.7"]
 ```
     
 For maven-based projects, add the following to your `pom.xml`:
@@ -74,7 +74,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>turtle</artifactId>
-  <version>0.1.6</version>
+  <version>0.1.7</version>
 </dependency>
 ```
     

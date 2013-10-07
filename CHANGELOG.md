@@ -1,5 +1,9 @@
 Changelog
 =========
+0.1.7
+-----
+* Dependency versions bumped
+
 0.1.6
 -----
 * Fill operation (canvas/bitmap only, not SVG yet)
