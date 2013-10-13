@@ -1,5 +1,11 @@
 Changelog
 =========
+0.1.8
+-----
+* Travis CI config
+* Re-org generated source directory
+* Dependency versions bumped
+
 0.1.7
 -----
 * Dependency versions bumped

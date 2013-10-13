@@ -1,4 +1,4 @@
-Turtle
+Turtle  [![Build Status](https://secure.travis-ci.org/rm-hull/turtle.png)](http://travis-ci.org/rm-hull/turtle)
 ======
 
 A lightweight turtle graphics library for Clojure &amp; ClojureScript. 
@@ -58,6 +58,7 @@ Building
 --------
 To build and install the library locally, run:
 
+     lein cljsbuild once
      lein install
 
 Including in your project
@@ -65,7 +66,7 @@ Including in your project
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
 ```clojure
-[rm-hull/turtle "0.1.7"]
+[rm-hull/turtle "0.1.8"]
 ```
     
 For maven-based projects, add the following to your `pom.xml`:
@@ -74,7 +75,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>turtle</artifactId>
-  <version>0.1.7</version>
+  <version>0.1.8</version>
 </dependency>
 ```
     
