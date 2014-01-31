@@ -94,3 +94,7 @@ TODO
 
 [1]: https://github.com/technomancy/leiningen
 [2]: https://clojars.org/rm-hull/turtle
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rm-hull/turtle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
