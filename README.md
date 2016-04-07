@@ -1,12 +1,10 @@
-Turtle  [![Build Status](https://secure.travis-ci.org/rm-hull/turtle.png)](http://travis-ci.org/rm-hull/turtle)
-======
+# Turtle  [![Build Status](https://secure.travis-ci.org/rm-hull/turtle.png)](http://travis-ci.org/rm-hull/turtle) [![Coverage Status](https://coveralls.io/repos/rm-hull/turtle/badge.svg?branch=master)](https://coveralls.io/r/rm-hull/turtle?branch=master) [![Dependencies Status](https://jarkeeper.com/rm-hull/turtle/status.svg)](https://jarkeeper.com/rm-hull/turtle) [![Downloads](https://jarkeeper.com/rm-hull/turtle/downloads.svg)](https://jarkeeper.com/rm-hull/turtle) [![Clojars Project](https://img.shields.io/clojars/v/rm-hull/turtle.svg)](https://clojars.org/rm-hull/turtle)
 
-A lightweight turtle graphics library for Clojure &amp; ClojureScript. 
-Includes renderers for SVG markup and bitmap images for Clojure, and a 
+A lightweight turtle graphics library for Clojure &amp; ClojureScript.
+Includes renderers for SVG markup and bitmap images for Clojure, and a
 HTML5 canvas renderer for ClojureScript.
 
-Examples
---------
+## Examples
 
 ### Clojure
 
@@ -15,18 +13,18 @@ Examples
   (:use [turtle.core :only [draw!]]
         [turtle.renderer.bitmap :only [->img]]))
 
-(def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
+(def triangle (take 12 (cycle [:fwd 20, :right 120])))
 
 (draw! ->img triangle [800 600])
 ```
 
-Would return an AWT BufferedImage of size 800x600, with the triangle scaled 
+Would return an AWT `BufferedImage` of size 800x600, with the triangle scaled
 to the full extent:
 
-     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: rmask=ff0000 gmask=ff00 bmask=ff amask=0 
+     #<BufferedImage BufferedImage@5d6b3f00: type = 1 DirectColorModel: rmask=ff0000 gmask=ff00 bmask=ff amask=0
      IntegerInterleavedRaster: width = 800 height = 600 #Bands = 3 xOff = 0 yOff = 0 dataOffset[0] 0>
 
-This can then be rendered with javax.imageio.ImageIO into whatever graphics format.
+This can then be rendered with `javax.imageio.ImageIO` into whatever graphics format.
 
 The same triange rendered with the SVG renderer:
 
@@ -35,7 +33,7 @@ The same triange rendered with the SVG renderer:
   (:use [turtle.core :only [draw!]]
         [turtle.renderer.vector :only [->svg]]))
 
-(def triangle (take 12 (cycle [:fwd 20, :right 120]))) 
+(def triangle (take 12 (cycle [:fwd 20, :right 120])))
 
 (draw! ->svg triangle [800 600])
 ```
@@ -47,54 +45,73 @@ yields:
   <g transform="translate(100.00000000000003,499.99999999999983) scale(19.999999999999993,-19.999999999999993)">
     <path d="M0.0,0.0L1.2246467991473533E-15,20.0L1.2246467991473533E-15,20.0L17.320508075688767,9.999999999999991L17.320508075688767,9.999999999999991L-3.552713678800501E-15,-1.0658141036401503E-14L-3.552713678800501E-15,-1.0658141036401503E-14" style="fill:none;stroke-width:3;stroke:red;" />
   </g>
-</svg>    
+</svg>
 ```
 
-Pre-requisites
---------------
-You will need [Leiningen][1] 2.3.2 or above installed.
+## Pre-requisites
 
-Building
---------
+You will need [Leiningen][1] 2.6.1 or above installed.
+
+## Building
+
 To build and install the library locally, run:
 
      lein cljsbuild once
      lein install
 
-Including in your project
--------------------------
+## Including in your project
+
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
 ```clojure
-[rm-hull/turtle "0.1.8"]
+[rm-hull/turtle "0.1.9"]
 ```
-    
+
 For maven-based projects, add the following to your `pom.xml`:
 
 ```xml
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>turtle</artifactId>
-  <version>0.1.8</version>
+  <version>0.1.9</version>
 </dependency>
 ```
-    
-TODO
-----
+
+
+## TODO
 
 * Documentation
-
 * Examples
-
+* Add tests & improve code coverage
 * Investigate poor rendering quality on PNG renderer
-
-* Implement commands: 
+* Implement commands:
     - :width _n_ - set the stroke width
     - :fill - close the current path and fill with the selected color
+* Perform rounding to 'n' decimal places
 
 [1]: https://github.com/technomancy/leiningen
 [2]: https://clojars.org/rm-hull/turtle
 
+## License
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rm-hull/turtle/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+### The MIT License (MIT)
+
+Copyright (c) 2016 Richard Hull
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
