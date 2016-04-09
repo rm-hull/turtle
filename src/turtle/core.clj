@@ -2,7 +2,7 @@
 
 (def colors [:red :green :blue :yellow :cyan :magenta :orange :black "#663300" "#68FF33"])
 
-(defn- bounding-box 
+(defn- bounding-box
   "Calculates the smallest and largest [x,y] points"
   [coords]
   (let [[min-x max-x] (apply (juxt min max) (map first coords))
@@ -20,16 +20,25 @@
 (defn- deg->rad [^double theta]
   (* theta radians))
 
-(defn- move-forward 
+(defn round-to
+  "Round a double to the given precision (number of significant digits)"
+  [precision]
+  (let [factor (Math/pow 10 precision)]
+    (fn [d]
+      (/ (Math/round (* d factor)) factor))))
+
+(def round-5dp (round-to 5))
+
+(defn- move-forward
   "Given a state (containing a heading), move forward by the supplied
    distance."
   [state ^double dist]
   (let [rad   (deg->rad (:heading state))
         [^double x ^double y] (:coords state)]
-    (assoc state :coords [ (+ x (* dist (Math/cos rad))) 
-                           (+ y (* dist (Math/sin rad)))])))
+    (assoc state :coords [ (round-5dp (+ x (* dist (Math/cos rad))))
+                           (round-5dp (+ y (* dist (Math/sin rad))))])))
 
-(defn- turn 
+(defn- turn
   "Given a state, and an operation (either the + or - function),
    update such that the new heading is altered by the angle"
   [op state angle]
@@ -64,18 +73,18 @@
     (dissoc state :move)))
 
 (def state-mapper
-  { :color   update-color 
-    :fill    update-fill 
-    :color-index color-index 
+  { :color   update-color
+    :fill    update-fill
+    :color-index color-index
     :left    (partial turn +)
     :right   (partial turn -)
-    :fwd     move-forward 
+    :fwd     move-forward
     :pen     pen-ops
     :save    push-state
-    :restore pop-state 
-    :origin  goto-origin}) 
+    :restore pop-state
+    :origin  goto-origin})
 
-(defn- next-state 
+(defn- next-state
   "Evolves the current state and a given command to determine the next state,
    e.g. if the current position is (4,3) pointing north, then move to (4,4)
    and turn in to the heading relative to the command."
@@ -95,8 +104,8 @@
       (filter #(state-mapper (first %)))
       (reductions next-state init-state))))
 
-(defn- calc-matrix-transform 
-  "Calculates an affine transform matrix which will scale a drawing 
+(defn- calc-matrix-transform
+  "Calculates an affine transform matrix which will scale a drawing
    constrained by the min/max bounds to the given screen co-ords. Note
    that the drawing is flipped so (0,0) will be represented at (or near)
    the lower edge, not the upper edge."
@@ -104,12 +113,12 @@
   (let [scale-x (/ screen-x (- max-x min-x))
         scale-y (/ screen-y (- max-y min-y))
         scale   (min scale-x scale-y)]
-    [ scale 0.0 0.0 (- scale) (* scale ( - min-x)) (* scale max-y) ])) 
+    (mapv round-5dp [ scale 0.0 0.0 (- scale) (* scale ( - min-x)) (* scale max-y) ])))
 
 (defn draw! [renderer cmds & [screen-area]]
   (let [data   (process cmds)
         bounds (-> (map :coords data) bounding-box (extend-margin 5))
-        output (if (nil? screen-area) (second (adjust-to-zero bounds)) screen-area) 
+        output (if (nil? screen-area) (second (adjust-to-zero bounds)) screen-area)
         matrix (calc-matrix-transform output bounds)]
     (renderer data output bounds matrix)))
 
