@@ -17,13 +17,28 @@
 (defn- d-instr [command]
   (str
     (if (move-op? command) "M" "L")
-    (join "," (:coords command))))
+    (join "," (:coords command))
+    " "))
+
+(defn- style [command]
+  (str "fill:none;stroke-width:3;stroke:" (name (:color command)) ";"))
+
+(defn- duplicates [accumulator next-value]
+  (let [last-value (last accumulator)]
+    (if (= last-value next-value)
+      accumulator
+      (conj accumulator next-value))))
 
 (defn- path [[initial commands]]
   (let [initial (assoc (last initial) :move true)]
-  [:path
-    { :style (str "fill:none;stroke-width:3;stroke:" (name (:color initial)) ";")
-      :d (->> commands (cons initial) (map d-instr) (apply str))}]))
+    [:path
+      { :style (style initial)
+        :d (->>
+             commands
+             (cons initial)
+             (mapv d-instr)
+             (reduce duplicates [])
+             (apply str))}]))
 
 (defn- segmenter [data]
   (->>
