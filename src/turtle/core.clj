@@ -60,9 +60,11 @@
 
 (defn- pop-state [state _]
   (let [restored (peek (:stack state))]
-    (-> state
-      (merge restored {:restore-point true})
-      (update-in [:stack] pop))))
+    (if (nil? restored)
+      state
+      (-> state
+        (merge restored {:restore-point true})
+        (update-in [:stack] pop)))))
 
 (defn- goto-origin [state _]
   (merge state { :coords [0 0] :heading 90 :stack [] :restore-point true }))
