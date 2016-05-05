@@ -30,10 +30,14 @@ The same triange rendered with the SVG renderer:
 
 ```clojure
 (ns example2
-  (:use [turtle.core :only [draw!]]
-        [turtle.renderer.vector :only [->svg]]))
+  (:require
+    [turtle.core :refer [draw!]]
+    [turtle.renderer.vector :refer [->svg]]))
 
-(def triangle (take 12 (cycle [:fwd 20, :right 120])))
+(def triangle
+  (take 12
+    (cycle
+      [:fwd 20, :right 120])))
 
 (draw! ->svg triangle [800 600])
 ```
@@ -42,8 +46,8 @@ yields:
 
 ```xml
 <svg height="600" overflow="visible" preserveAspectRatio="xMidYMid meet" version="1.0" width="800" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" zoomAndPan="magnify">
-  <g transform="translate(100.00000000000003,499.99999999999983) scale(19.999999999999993,-19.999999999999993)">
-    <path d="M0.0,0.0L1.2246467991473533E-15,20.0L1.2246467991473533E-15,20.0L17.320508075688767,9.999999999999991L17.320508075688767,9.999999999999991L-3.552713678800501E-15,-1.0658141036401503E-14L-3.552713678800501E-15,-1.0658141036401503E-14" style="fill:none;stroke-width:3;stroke:red;" />
+  <g transform="translate(100.0,500.0) scale(20.0,-20.0)">
+    <path d="M0.0,0.0 L0.0,20.0 L17.32051,10.0 L0.0,0.0 " style="fill:none;stroke-width:3;stroke:red;"></path>
   </g>
 </svg>
 ```
