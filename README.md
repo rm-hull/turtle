@@ -10,10 +10,14 @@ HTML5 canvas renderer for ClojureScript.
 
 ```clojure
 (ns example1
-  (:use [turtle.core :only [draw!]]
-        [turtle.renderer.bitmap :only [->img]]))
+  (:require
+    [turtle.core :refer [draw!]]
+    [turtle.renderer.bitmap :refer [->img]]))
 
-(def triangle (take 12 (cycle [:fwd 20, :right 120])))
+(def triangle
+  (take 12
+    (cycle
+      [:fwd 20, :right 120])))
 
 (draw! ->img triangle [800 600])
 ```

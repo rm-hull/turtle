@@ -1,5 +1,14 @@
 Changelog
 =========
+0.1.9
+-----
+* Dependency versions bumped
+* pop-state doesn't crash if no restore point
+* Add basic test
+* Remove duplicate path points in SVG rendering
+* Make SVG paths slightly more readable (separate with spaces)
+* Rounding to 5 d.p.
+
 0.1.8
 -----
 * Travis CI config
