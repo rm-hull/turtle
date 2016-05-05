@@ -1,4 +1,4 @@
-(defproject rm-hull/turtle "0.1.9-SNAPSHOT"
+(defproject rm-hull/turtle "0.1.9"
   :description "A lightweight Clojure/ClojureScript turtle-graphics library for SVG, Graphics2D and HTML5 canvas rendering"
   :url "https://github.com/rm_hull/turtle"
   :license {
@@ -6,7 +6,7 @@
     :url "http://opensource.org/licenses/MIT"}
   :dependencies [
     [org.clojure/clojure "1.8.0"]
-    [org.clojure/clojurescript "1.8.40"]
+    [org.clojure/clojurescript "1.8.51"]
     [hipo "0.5.2"]
     [hiccup "1.0.5"]
     [rm-hull/monet "0.2.2"]]
