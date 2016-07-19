@@ -1,6 +1,6 @@
 (defproject rm-hull/turtle "0.1.9"
   :description "A lightweight Clojure/ClojureScript turtle-graphics library for SVG, Graphics2D and HTML5 canvas rendering"
-  :url "https://github.com/rm_hull/turtle"
+  :url "https://github.com/rm-hull/turtle"
   :license {
     :name "The MIT License (MIT)"
     :url "http://opensource.org/licenses/MIT"}
