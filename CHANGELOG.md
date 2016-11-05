@@ -1,5 +1,9 @@
 Changelog
 =========
+0.1.10
+------
+* Dependency versions bumped
+
 0.1.9
 -----
 * Dependency versions bumped

@@ -1,4 +1,4 @@
-(defproject rm-hull/turtle "0.1.9"
+(defproject rm-hull/turtle "0.1.10"
   :description "A lightweight Clojure/ClojureScript turtle-graphics library for SVG, Graphics2D and HTML5 canvas rendering"
   :url "https://github.com/rm-hull/turtle"
   :license {

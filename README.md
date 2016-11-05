@@ -72,7 +72,7 @@ To build and install the library locally, run:
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
 ```clojure
-[rm-hull/turtle "0.1.9"]
+[rm-hull/turtle "0.1.10"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
@@ -81,7 +81,7 @@ For maven-based projects, add the following to your `pom.xml`:
 <dependency>
   <groupId>rm-hull</groupId>
   <artifactId>turtle</artifactId>
-  <version>0.1.9</version>
+  <version>0.1.10</version>
 </dependency>
 ```
 
