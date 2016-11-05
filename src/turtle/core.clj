@@ -7,13 +7,13 @@
   [coords]
   (let [[min-x max-x] (apply (juxt min max) (map first coords))
         [min-y max-y] (apply (juxt min max) (map second coords))]
-   [[min-x min-y] [max-x max-y]]))
+    [[min-x min-y] [max-x max-y]]))
 
 (defn- extend-margin [[[min-x min-y] [max-x max-y]] margin]
   [[(- min-x margin) (- min-y margin)] [(+ max-x margin) (+ max-y margin)]])
 
 (defn- adjust-to-zero [[[min-x min-y] [max-x max-y]]]
-  [[0 0] [( - max-x min-x) (- max-y min-y)]])
+  [[0 0] [(- max-x min-x) (- max-y min-y)]])
 
 (def radians (/ Math/PI 180.0))
 
@@ -35,8 +35,8 @@
   [state ^double dist]
   (let [rad   (deg->rad (:heading state))
         [^double x ^double y] (:coords state)]
-    (assoc state :coords [ (round-5dp (+ x (* dist (Math/cos rad))))
-                           (round-5dp (+ y (* dist (Math/sin rad))))])))
+    (assoc state :coords [(round-5dp (+ x (* dist (Math/cos rad))))
+                          (round-5dp (+ y (* dist (Math/sin rad))))])))
 
 (defn- turn
   "Given a state, and an operation (either the + or - function),
@@ -63,11 +63,11 @@
     (if (nil? restored)
       state
       (-> state
-        (merge restored {:restore-point true})
-        (update-in [:stack] pop)))))
+          (merge restored {:restore-point true})
+          (update-in [:stack] pop)))))
 
 (defn- goto-origin [state _]
-  (merge state { :coords [0 0] :heading 90 :stack [] :restore-point true }))
+  (merge state {:coords [0 0] :heading 90 :stack [] :restore-point true}))
 
 (defn- pen-ops [state pen]
   (if (= pen :up)
@@ -75,16 +75,16 @@
     (dissoc state :move)))
 
 (def state-mapper
-  { :color   update-color
-    :fill    update-fill
-    :color-index color-index
-    :left    (partial turn +)
-    :right   (partial turn -)
-    :fwd     move-forward
-    :pen     pen-ops
-    :save    push-state
-    :restore pop-state
-    :origin  goto-origin})
+  {:color   update-color
+   :fill    update-fill
+   :color-index color-index
+   :left    (partial turn +)
+   :right   (partial turn -)
+   :fwd     move-forward
+   :pen     pen-ops
+   :save    push-state
+   :restore pop-state
+   :origin  goto-origin})
 
 (defn- next-state
   "Evolves the current state and a given command to determine the next state,
@@ -93,18 +93,18 @@
   ([] [])
   ([curr-state] curr-state)
   ([curr-state [cmd & [peek-ahead]]]
-    (if-let [update-fn (get state-mapper cmd)]
+   (if-let [update-fn (get state-mapper cmd)]
       ; always need stack/heading/coords, but nothing else
-      (update-fn (select-keys curr-state [:coords :heading :stack :move]) peek-ahead)
-      curr-state)))
+     (update-fn (select-keys curr-state [:coords :heading :stack :move]) peek-ahead)
+     curr-state)))
 
 (defn- process [cmds]
-  (let [init-state { :color :red :coords [0.0 0.0] :heading 90 :stack []}]
+  (let [init-state {:color :red :coords [0.0 0.0] :heading 90 :stack []}]
     (->>
-      (flatten cmds)
-      (partition-all 2 1)
-      (filter #(state-mapper (first %)))
-      (reductions next-state init-state))))
+     (flatten cmds)
+     (partition-all 2 1)
+     (filter #(state-mapper (first %)))
+     (reductions next-state init-state))))
 
 (defn- calc-matrix-transform
   "Calculates an affine transform matrix which will scale a drawing
@@ -115,7 +115,7 @@
   (let [scale-x (/ screen-x (- max-x min-x))
         scale-y (/ screen-y (- max-y min-y))
         scale   (min scale-x scale-y)]
-    (mapv round-5dp [ scale 0.0 0.0 (- scale) (* scale ( - min-x)) (* scale max-y) ])))
+    (mapv round-5dp [scale 0.0 0.0 (- scale) (* scale (- min-x)) (* scale max-y)])))
 
 (defn draw! [renderer cmds & [screen-area]]
   (let [data   (process cmds)

@@ -3,8 +3,8 @@
                              begin-path line-to move-to stroke close-path transform]]))
 
 (defn- draw-op [state]
-  (if (or (:restore-point state) (:move state)) 
-    move-to 
+  (if (or (:restore-point state) (:move state))
+    move-to
     line-to))
 
 (defn- draw-path-segments! [ctx data]
@@ -17,20 +17,20 @@
       (let [state (first data)
             [x2 y2] (:coords state)]
         (when-let [color (:fill state)]
-          (-> ctx 
-            close-path 
-            (fill-style color) 
-            fill
-            stroke 
-            begin-path 
-            (move-to x1 y1))) 
+          (-> ctx
+              close-path
+              (fill-style color)
+              fill
+              stroke
+              begin-path
+              (move-to x1 y1)))
         (when-let [color (:color state)]
-          (-> ctx 
-            stroke 
-            close-path 
-            (stroke-style color) 
-            begin-path 
-            (move-to x1 y1))) 
+          (-> ctx
+              stroke
+              close-path
+              (stroke-style color)
+              begin-path
+              (move-to x1 y1)))
         (apply (draw-op state) ctx (:coords state))
         (recur (next data) x2 y2)))))
 
@@ -40,7 +40,7 @@
     (.log js/console (pr-str "bounds" bounds))
     (.log js/console (pr-str "matrix" matrix))
     (->
-      (apply transform ctx matrix)
-      (stroke-width 3)
-      (stroke-cap :square)
-      (draw-path-segments! data))))
+     (apply transform ctx matrix)
+     (stroke-width 3)
+     (stroke-cap :square)
+     (draw-path-segments! data))))
