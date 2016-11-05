@@ -25,6 +25,6 @@
       :global-vars {*warn-on-reflection* true}
       :plugins [
         [lein-cljfmt "0.5.6"]
-        [lein-cloverage "1.0.6"]
+        [lein-cloverage "1.0.9"]
         [lein-cljsbuild "1.1.4"]
         [com.birdseye-sw/lein-dalap "0.1.1"]]}})
