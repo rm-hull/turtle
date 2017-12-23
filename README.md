@@ -65,7 +65,7 @@ yields:
 
 ## Pre-requisites
 
-You will need [Leiningen][1] 2.6.1 or above installed.
+You will need [Leiningen][1] 2.7.1 or above installed.
 
 ## Building
 
@@ -79,7 +79,7 @@ To build and install the library locally, run:
 There is a version hosted at [Clojars][2]. For leiningen include a dependency:
 
 ```clojure
-[rm-hull/turtle "0.1.10"]
+[rm-hull/turtle "0.1.11"]
 ```
 
 For maven-based projects, add the following to your `pom.xml`:
